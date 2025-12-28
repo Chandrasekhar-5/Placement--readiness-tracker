@@ -1,2 +1,10 @@
 # Placement--readiness-tracker
-A personal web app to track daily placement preparation progress
+A simple web application to track daily placement preparation, including tasks, DSA pracitce , study consistency and much more.
+
+## Tech Stack
+- HTML
+- CSS
+- JavaScript
+
+## Current Status
+- Basic UI setup completed
