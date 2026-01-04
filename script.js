@@ -6,7 +6,7 @@ addBtn.addEventListener('click', () => {
     const taskText = taskInput.value.trim();
     if ( taskText === "" ) return;
 
-    tasks.push(taskText);
+    tasks.push( {text: taskText, completed: false} );
     saveTasks();
     renderTasks();
     taskInput.value = "";
@@ -22,7 +22,13 @@ function renderTasks() {
     taskList.innerHTML = "";
     tasks.forEach(( task, index ) => {
         const li = document.createElement('li');
-        li.textContent = task;
+        li.textContent = task.text;
+        li.addEventListener("click", () => {
+            task.completed = !task.completed;
+            saveTasks();
+            renderTasks();
+        });
+        if (task.completed)  li.style.textDecration = 'line-through';
 
         const deleteBtn = document.createElement("button");
         deleteBtn.innerText = "❌";
@@ -40,8 +46,16 @@ function renderTasks() {
         li.appendChild(deleteBtn);
         taskList.appendChild(li);
     });
+    updateProgress();
 }
 
+function updateProgress() {
+    const completed = tasks.filter(t => t.completed).length;
+    const total = tasks.length;
+    const percent = total === 0 ? 0 : Math.round((completed / total) * 100);
+
+    console.log(`Progress: ${percent}%`);
+}
 
 
 
