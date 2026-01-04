@@ -20,9 +20,24 @@ function saveTasks() {
 
 function renderTasks() {
     taskList.innerHTML = "";
-    tasks.forEach(task => {
+    tasks.forEach(( task, index ) => {
         const li = document.createElement('li');
         li.textContent = task;
+
+        const deleteBtn = document.createElement("button");
+        deleteBtn.innerText = "❌";
+        Object.assign(deleteBtn.style, {
+            marginLeft: '10px',
+            background: 'none',
+            border: 'none'
+        });
+
+        deleteBtn.addEventListener('click', () => {
+            tasks.splice( index, 1 );
+            saveTasks();
+            renderTasks();
+        });
+        li.appendChild(deleteBtn);
         taskList.appendChild(li);
     });
 }
