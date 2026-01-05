@@ -1,6 +1,8 @@
 const taskInput = document.getElementById('taskInput');
 const addBtn = document.getElementById('addTaskBtn');
 const taskList = document.getElementById('taskList');
+const progressText = document.getElementById('progressText');
+const progressFill = document.getElementById('progressFill');
 
 addBtn.addEventListener('click', () => {
     const taskText = taskInput.value.trim();
@@ -54,7 +56,8 @@ function updateProgress() {
     const total = tasks.length;
     const percent = total === 0 ? 0 : Math.round((completed / total) * 100);
 
-    console.log(`Progress: ${percent}%`);
+    progressText.innerText = `Progress: ${percent}%`;
+    progressFill.style.width = percent + "%";
 }
 
 
