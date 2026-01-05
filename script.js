@@ -14,6 +14,12 @@ addBtn.addEventListener('click', () => {
     taskInput.value = "";
 });
 
+taskInput.addEventListener('keypress', (e) => {
+    if (e.key === "Enter") {
+        addBtn.click();
+    }
+});
+
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
 function saveTasks() {
